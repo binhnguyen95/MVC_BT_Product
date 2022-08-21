@@ -12,10 +12,10 @@ public class ProductService implements IProductService {
 
     static {
         products = new HashMap<>();
-        products.put(1, new Product(1, "Thịt chó", 15.99, "Chó nướng", "VN"));
-        products.put(2, new Product(2, "Thịt mèo", 17.99, "Mèo nướng", "VN"));
-        products.put(3, new Product(3, "Thịt lợn", 7.99, "Lợn luộc", "VN"));
-        products.put(4, new Product(4, "Thịt chim bồ câu", 9.99, "Xôi chim", "VN"));
+        products.put(1, new Product(1, "Thịt chó", 15.99, "Chó nướng", "Alo"));
+        products.put(2, new Product(2, "Thịt mèo", 17.99, "Mèo nướng", "Một"));
+        products.put(3, new Product(3, "Thịt lợn", 7.99, "Lợn luộc", "Hai"));
+        products.put(4, new Product(4, "Thịt chim bồ câu", 9.99, "Xôi chim", "Ba"));
     }
 
     @Override
