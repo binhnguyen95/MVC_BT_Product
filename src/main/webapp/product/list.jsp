@@ -8,13 +8,13 @@
 <body>
 <h1>Products</h1>
 
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th class="table-success">Id</th>
         <th class="table-danger">Name</th>
         <th class="table-info">Price</th>
         <th class="table-warning">Description</th>
-        <th class="table-active">Manufacturer</th>
+        <th class="table-primary">Manufacturer</th>
         <td class="table-light">Edit</td>
         <td class="table-light">Delete</td>
     </tr>
@@ -31,6 +31,9 @@
         </tr>
     </c:forEach>
 </table>
+
+<a href="/product?action=create">Create new product</a>
+<%--<input class="btn btn-primary" type="submit" value="Edit">--%>
 
 </body>
 </html>
