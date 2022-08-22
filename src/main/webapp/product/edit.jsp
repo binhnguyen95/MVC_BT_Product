@@ -19,8 +19,12 @@
     <legend>Product information</legend>
     <table>
       <tr>
+        <td>Id: </td>
+        <td><input type="text" name="id" id="id" value="${product.id}"></td>
+      </tr>
+      <tr>
         <td>Name: </td>
-        <td><input type="text" name="name" id="name" value="${product.id}"></td>
+        <td><input type="text" name="name" id="name" value="${product.name}"></td>
       </tr>
       <tr>
         <td>Price: </td>

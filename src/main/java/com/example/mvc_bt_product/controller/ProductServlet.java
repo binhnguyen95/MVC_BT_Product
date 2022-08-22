@@ -27,6 +27,8 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 showDeleteForm(request, response);
                 break;
+            case "detail":
+                productDetail(request, response);
             default:
                 showAllProduct(request, response);
                 break;
@@ -66,6 +68,19 @@ public class ProductServlet extends HttpServlet {
         } else {
             request.setAttribute("product", products);
             dispatcher = request.getRequestDispatcher("product/delete.jsp");
+        }
+        dispatcher.forward(request, response);
+    }
+
+    private void productDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product products = this.productService.findById(id);
+        RequestDispatcher dispatcher;
+        if(products == null){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("product", products);
+            dispatcher = request.getRequestDispatcher("product/detail.jsp");
         }
         dispatcher.forward(request, response);
     }

@@ -20,12 +20,12 @@
     </tr>
     <c:forEach var="product" items="${dssp}">
         <tr>
+
             <td>${product.id}</td>
-            <td>${product.name}</td>
+            <td> <a href="/product?action=detail&id=${product.id}">${product.name}</a> </td>
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td>${product.manufacturer}</td>
-<%--            <td><input type="submit" value="Edit" class="btn btn-primary"/></td>--%>
             <td><a href="/product?action=edit&id=${product.id}"><input type="submit" value="Edit" class="btn btn-primary"></a></td>
             <td><a href="/product?action=delete&id=${product.id}"><input type="submit" value="Remove" class="btn btn-secondary"></a></td>
         </tr>
