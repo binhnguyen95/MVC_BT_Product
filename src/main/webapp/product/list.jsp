@@ -33,7 +33,6 @@
 </table>
 
 <a href="/product?action=create">Create new product</a>
-<%--<input class="btn btn-primary" type="submit" value="Edit">--%>
 
 </body>
 </html>

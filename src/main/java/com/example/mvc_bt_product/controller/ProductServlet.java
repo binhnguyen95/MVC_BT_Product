@@ -22,7 +22,7 @@ public class ProductServlet extends HttpServlet {
                 showCreateForm(request, response);
                 break;
             case "edit":
-
+                showEditForm(request, response);
                 break;
             case "delete":
                 showDeleteForm(request, response);
@@ -44,14 +44,27 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = this.productService.findById(id);
+        Product products = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if (product == null) {
+        if (products == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            request.setAttribute("product", product);
+            request.setAttribute("product", products);
+            dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        }
+        dispatcher.forward(request, response);
+     }
+
+    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product products = this.productService.findById(id);
+        RequestDispatcher dispatcher;
+        if (products == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("product", products);
             dispatcher = request.getRequestDispatcher("product/delete.jsp");
         }
         dispatcher.forward(request, response);
@@ -76,7 +89,7 @@ public class ProductServlet extends HttpServlet {
                 createProduct(request, response);
                 break;
             case "edit":
-
+                updateProduct(request, response);
                 break;
             case "delete":
                 deleteProduct(request, response);
@@ -104,16 +117,38 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String description = request.getParameter("description");
+        String manufacturer = request.getParameter("manufacturer");
+        Product products = this.productService.findById(id);
+        RequestDispatcher dispatcher;
+        if (products == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            products.setName(name);
+            products.setPrice(price);
+            products.setDescription(description);
+            products.setManufacturer(manufacturer);
+            this.productService.update(id, products);
+            request.setAttribute("product", products);
+            request.setAttribute("message", "Product information was updated");
+            dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        }
+        dispatcher.forward(request, response);
+    }
+
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = this.productService.findById(id);
+        Product products = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if (product == null) {
+        if (products == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             this.productService.remove(id);
             response.sendRedirect("product?action=alo");
         }
-
     }
 }

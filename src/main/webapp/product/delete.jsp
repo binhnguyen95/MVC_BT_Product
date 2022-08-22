@@ -32,9 +32,6 @@
             <tr>
                 <td><input type="submit" value="Delete product"></td>
             </tr>
-            <tr>
-                <td><a href="${pageContext.request.contextPath}/product?action=alo">Back to product list</a></td>
-            </tr>
         </table>
     </fieldset>
 </form>
